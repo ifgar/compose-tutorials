@@ -10,18 +10,18 @@ dependencies {
 }
 ```
 
-## 2. Crear `AppUiState` en `ui`
+## 2. Crear `MyUiState` en `ui`
 
 ```kotlin
-data class AppUiState(
+data class MyUiState(
 
 )
 ```
 
-## 3. Mover variables de `MainActivity` a `AppUiState`
+## 3. Mover variables de `MainActivity` a `MyUiState`
 
 ```kotlin
-data class AppUiState(
+data class MyUiState(
     val revenue: Int = 0,
     val itemsSold: Int = 0,
     val currentItemIndex: Int = 0
@@ -30,23 +30,23 @@ data class AppUiState(
 Toda variable que represente estado de UI debe pasar aquí.  
 Si es compleja, la lógica se hará en el ViewModel.
 
-## 4. Crear clase `AppViewModel` en `ui`
+## 4. Crear clase `MyViewModel` en `ui`
 
 ```kotlin
 class MyViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(MyUiState())
-    val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<MyUiState> = _uiState.asStateFlow()
 }
 ```
 
-## 5. Mover funciones y lógica de negocio de `MainActivity` a `AppViewModel`
+## 5. Mover funciones y lógica de negocio de `MainActivity` a `MyViewModel`
 
 ```kotlin
 class MyViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(MyUiState())
-    val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<MyUiState> = _uiState.asStateFlow()
 
     // Por ejemplo:
     fun getCurrentItemPrice(): Int {
@@ -75,22 +75,24 @@ fun onItemClicked() {
 }
 ```
 
-## 6. Pasar el `AppViewModel` a la pantalla principal (`AppScreen`)
+## 6. Pasar el `MyViewModel` a la pantalla principal (`MyScreen`)
 ```kotlin
+@Composable
 fun AppScreen(
-    appViewModel: AppViewModel = viewModel()
+    myViewModel: MyViewModel = viewModel()
 )
 ```
 
-## 7. Obtener  `AppUiState` en `AppScreen`
+## 7. Obtener  `MyUiState` en `MyScreen`
 ```kotlin
-fun AppScreen(
-    appViewModel: AppViewModel = viewModel()
+@Composable
+fun MyScreen(
+    myViewModel: MyViewModel = viewModel()
 ){
-    val appUiState by appViewModel.uiState.collectAsState()
+    val myUiState by myViewModel.uiState.collectAsState()
 }
 ```
 Así podremos acceder a los estados de las variables.
 
-## 8. Reemplazar antiguas llamadas a las varibles `AppScreen`
-Usar `appUiState` para acceder a los valores y `appViewModel` para llamar funciones.
+## 8. Reemplazar antiguas llamadas a las varibles `MyScreen`
+Usar `myUiState` para acceder a los valores y `myViewModel` para llamar funciones.

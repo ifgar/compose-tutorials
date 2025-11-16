@@ -3,20 +3,20 @@ ViewModel en Compose — Guía rápida
 1. Dependencias
 En app/build.gradle.kts añadir: implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
 
-2. Crear AppUiState en ui
+2. Crear MyUiState en ui
 
-3. Mover variables de MainActivity a AppUiState
+3. Mover variables de MainActivity a MyUiState
 Toda variable que represente estado de UI debe pasar aquí.  
 Si es compleja, la lógica se hará en el ViewModel.
 
-4. Crear clase AppViewModel en ui
+4. Crear clase MyViewModel en ui
 
-5. Mover funciones y lógica de negocio de MainActivity a AppViewModel
+5. Mover funciones y lógica de negocio de MainActivity a MyViewModel
 
-6. Pasar el AppViewModel a la pantalla principal (AppScreen)
+6. Pasar el MyViewModel a la pantalla principal (MyScreen)
 
-7. Obtener  AppUiState en AppScreen
+7. Obtener  MyUiState en MyScreen
 Así podremos acceder a los estados de las variables.
 
-8. Reemplazar antiguas llamadas a las varibles AppScreen
-Usar appUiState para acceder a los valores y appViewModel para llamar funciones.
+8. Reemplazar antiguas llamadas a las varibles MyScreen
+Usar myUiState para acceder a los valores y myViewModel para llamar funciones.
