@@ -127,15 +127,15 @@ NavHost(
             startDestination = LunchTrayScreen.Start.name,
             modifier = Modifier.padding(innerPadding)
         ){
-            composable(rout = MyScreen.Start.name){
+            composable(route = MyScreen.Start.name){
                 // Componible de la StartScreen
             }
 
-            composable(rout = MyScreen.Second.name){
+            composable(route = MyScreen.Second.name){
                 // Componible de la SecondScreen
             }
 
-            composable(rout = MyScreen.Third.name){
+            composable(route = MyScreen.Third.name){
                 // Componible de la ThirdScreen
             }
         }
