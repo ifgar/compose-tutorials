@@ -156,25 +156,3 @@ private fun cancelAndNavigateToStart(
 }
 ```
 Estas funciones pueden combinarse con lógica del `ViewModel` para actualizar estado antes de navegar.
-
-## Extra
-Si necesitamos iniciar el estado con valores distintos a los de MyUiState, en `MyViewModel`:
-```kotlin
-class MonsterViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(createInitialState()) // Importante
-    val uiState: StateFlow<MonsterUiState> = _uiState.asStateFlow()
-
-    private fun createInitialState(): MonsterUiState {
-        val monster = determineMonsterToShow()
-        return MonsterUiState(
-            name = monster.name,
-            maxHp = monster.maxHp,
-            currentHp = monster.maxHp,
-            spriteId = monster.spriteId,
-            bodyCount = 0
-        )
-    }
-
-    // Resto de código
-}
-```
